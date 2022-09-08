@@ -6,18 +6,18 @@ namespace SquareFigureLib
 {
     public class Triangle : Figure
     {
-        private double hypotenuse;
         private double leg_a;
         private double leg_b;
-        public double Hypotenuse
+        private double leg_c;
+        public double Leg_c
         {
             get
             {
-                return hypotenuse;
+                return leg_c;
             }
             set
             {
-                hypotenuse = value;
+                leg_c = value;
             }
         }
         public double Leg_a
@@ -46,33 +46,28 @@ namespace SquareFigureLib
 
         public Triangle()
         {
-            Hypotenuse = 0;
+            Leg_c = 0;
             Leg_a = 0;
             Leg_b = 0;
         }
 
-        public Triangle(double Hypotenuse, double Leg_a, double Leg_b)
+        public Triangle(double Leg_c, double Leg_a, double Leg_b)
         {
-            this.Hypotenuse = Hypotenuse;
+            this.Leg_c = Leg_c;
             this.Leg_a = Leg_a;
             this.Leg_b = Leg_b;
         }
 
         public override double GetSquare()
         {
-            if (Hypotenuse <= 0 || Leg_b <= 0 || Leg_a <= 0)
+            if (Leg_c <= 0 || Leg_b <= 0 || Leg_a <= 0)
             {
                 return 0;
             }
 
-            if (Leg_b == leg_a)
-            {
-                return Math.Round(Leg_a * Leg_b / 2, 2);
-            }
-
-            double p_Semiperimeter = (Hypotenuse + Leg_a + Leg_b) / 2;
+            double p_Semiperimeter = (Leg_c + Leg_a + Leg_b) / 2;
             double s_square = Math.Sqrt(p_Semiperimeter * (p_Semiperimeter - Leg_a) *
-                (p_Semiperimeter - Leg_b) * (p_Semiperimeter - Hypotenuse));
+                (p_Semiperimeter - Leg_b) * (p_Semiperimeter - Leg_c));
 
             return Math.Round(s_square, 2);
         }
